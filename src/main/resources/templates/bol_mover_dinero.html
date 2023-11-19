@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml">
+    <head th:replace="layout/plantilla :: head(${'Bolsillos 2'})">
+        <title>Bolsillos 2</title>
+        <meta charset="UTF-8"/>
+    </head>
+    <body>
+        <header th:replace="layout/plantilla :: header"></header>
+        <div class="container my-4">
+            <div class="row justify-content-center">
+                <div class="col-lg-6 col-md-8">
+                    <form method="post" th:action="@{/mover_dinero_bolsillos}">
+                        <div class="card">
+                            <div class="card-header text-center">
+                                <h4 class="card-title">Mover Dinero Entre Bolsillos</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="form-group mb-3">
+                                    <!-- Selecciona bolsillo de origen -->
+                                    <label for="seleccionDeBolsillo">Selecciona el bolsillo origen:</label>
+                                    <select class="form-control" id="seleccionDeBolsillo" name="seleccionDeBolsillo">
+                                        <option th:each="bolsillo : ${user.getBolsillos}" th:value="${bolsillo.getId}" 
+                                                th:text="${bolsillo.getNombre} + ', ' + ${bolsillo.getSaldo}"></option>
+                                    </select>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <!-- Selecciona el bolsillo destino -->
+                                    <label for="seleccionDeBolsillo2">Selecciona el bolsillo destino:</label>
+                                    <select class="form-control" id="seleccionDeBolsillo2" name="seleccionDeBolsillo2">
+                                        <option th:each="bolsillo : ${user.getBolsillos}" th:value="${bolsillo.getId}" 
+                                                th:text="${bolsillo.getNombre} + ', ' + ${bolsillo.getSaldo}"></option>
+                                    </select>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <!-- Monto a mover -->
+                                    <label for="monto">Monto a mover:</label>
+                                    <input type="number" class="form-control" name="monto" required="required"/>
+                                </div>                               
+                                <div class="text-center d-grid gap-2 mb-3">
+                                    <!-- Boton Ejecutar Movimiento y Regresar -->
+                                    <button type="submit" class="btn btn-primary">
+                                        <i class="fas fa-exchange-alt mr-2"></i>Ejecutar Movimiento</button>
+                                    <a th:href="@{/regresar_bolsillos}" class="btn btn-warning">
+                                        <i class="fa fa-arrow-circle-left mr-2"></i>Regresar</a>
+                                </div>
+                                <!-- Mensaje de alerta -->
+                                <div class="container">
+                                    <div class="row justify-content-center">
+                                        <div class="col-md-8">
+                                            <div th:if="${advertencia != null and !advertencia.isEmpty()}" class="alert alert-warning text-center" role="alert">
+                                                <span class="fs-5" th:text="${advertencia}"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <footer th:replace="layout/plantilla :: footer"></footer>
+    </body>
+</html>

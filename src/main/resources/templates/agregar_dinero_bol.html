@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml">
+    <head th:replace="layout/plantilla :: head(${'Bolsillos 3'})">
+        <title>Bolsillos 3</title>
+        <meta charset="UTF-8"/>
+    </head>
+    <body>
+        <header th:replace="layout/plantilla :: header"></header>
+
+        <div class="container mt-4">
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <!-- Mensaje de Saldo disponible en la cuenta:-->
+                            <div class="container">
+                                <div class="row justify-content-center">
+                                    <div class="col-md-8">
+                                        <div class="alert alert-success text-center py-2" role="alert">
+                                            <p class="mb-0">Saldo disponible en la cuenta: <span th:text="${user.getSaldo}"></span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <form method="post" th:action="@{/agregar_dinero_bolsillo}" class="my-4">
+                                <div class="mb-3">
+                                    <!-- Mensaje de Ingrese el monto + input: -->
+                                    <label for="monto" class="form-label">Ingrese el monto que desee mover de su saldo principal a un bolsillo:</label>
+                                    <input type="number" class="form-control" name="monto" required="required"/>
+                                </div>
+
+                                <div class="mb-3">
+                                    <!-- Mensaje de Selecciona el bolsillo + input: -->
+                                    <label for="seleccionDeBolsillo" class="form-label">Selecciona el bolsillo donde deseas mover el dinero:</label>
+                                    <select class="form-control" id="seleccionDeBolsillo" name="seleccionDeBolsillo">
+                                        <option th:each="bolsillo : ${user.getBolsillos()}" 
+                                                th:value="${bolsillo.getId()}" 
+                                                th:text="${bolsillo.getNombre()} + ', ' + ${bolsillo.getSaldo()}">
+                                        </option>
+                                    </select>
+                                </div>
+                                <div class="text-center d-grid">
+                                    <!-- botones Transferir y regresar -->
+                                    <button type="submit" class="btn btn-primary">
+                                        <i class="fas fa-exchange-alt"></i> Transferir dinero
+                                    </button>
+                                    <a th:href="@{/regresar_bolsillos}" class="btn btn-warning">
+                                        <i class="fa fa-arrow-circle-left mr-2"></i>Regresar</a>
+                                </div>
+                            </form>
+                            <div class="container">
+                                <div class="row justify-content-center">
+                                    <div class="col-md-10">
+                                        <div th:if="${advertencia != null and !advertencia.isEmpty()}" class="alert alert-warning text-center" role="alert">
+                                            <span class="fs-5" th:text="${advertencia}"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer th:replace="layout/plantilla :: footer"></footer>
+    </body>
+</html>

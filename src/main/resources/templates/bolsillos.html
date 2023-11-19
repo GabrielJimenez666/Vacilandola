@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml">
+    <head th:replace="layout/plantilla :: head(${'bolsillos'})">
+        <title>bolsillos</title>        
+    </head>
+    <body>
+        <header th:replace="layout/plantilla :: header"></header>
+        <div class="mt-3">
+            <section th:replace='layout/infoBolsillos :: infoBolsillos' ></section>
+            <div class="container text-center mt-3">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="btn-group d-flex" role="group" aria-label="Basic example">
+                            <a th:href="@{/regresar_menu}" class="btn btn-warning flex-grow-1">
+                                <i class="fa fa-arrow-circle-left mr-2"></i>Regresar</a>
+                            <a th:href="@{/agregar_bolsillo}" class="btn btn-secondary flex-grow-1">
+                                <i class="fas fa-plus mr-2"></i>Crear bolsillo</a>
+                            <a th:if="${user.bolsillos != null and !user.bolsillos.empty}" th:href="@{/mover_dinero}" class="btn btn-success flex-grow-1">
+                                <i class="fas fa-exchange-alt mr-2"></i>Mover dinero entre los bolsillos</a>
+                            <a th:if="${user.bolsillos != null and !user.bolsillos.empty}" th:href="@{/agregar_dinero_bol}" class="btn btn-info flex-grow-1">
+                                <i class="fas fa-dollar-sign mr-2"></i>Agregar dinero del saldo principal a un bolsillo</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer th:replace="layout/plantilla :: footer"></footer>
+    </body>
+</html>

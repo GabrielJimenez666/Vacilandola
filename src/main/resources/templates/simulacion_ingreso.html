@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
+    <head th:replace="layout/plantilla :: head(${'Simulacion Ingreso'})">
+        <title>Simulacion Ingreso</title>
+    </head>
+    <body>
+        <header th:replace="layout/plantilla :: header"></header>
+        <div class="container mt-3">
+            <div class="row justify-content-center">
+                <div class="col-sm-8 col-md-5">
+                    <div class="text-center mb-4">
+                        <h2>Simulacion de Ingreso</h2>
+                    </div>
+                    <div class="card shadow">
+                        <div class="card-body">
+                            <form method="post" th:action="@{/simulacion_ingreso}">
+                                <!-- Ingrese el monto + input -->
+                                <div class="mb-3">
+                                    <label for="monto">Ingrese el monto </label>
+                                    <input type="text" name="monto" required="required" />
+                                    
+                                </div>
+                                <!-- Bones Generar ingreso + Regresar -->
+                                <div class="d-grid gap-2">
+                                    <button type="submit" name="ejecutar" class="btn btn-primary">Generar ingreso manual</button>
+                                    <a th:href="@{/ir_simulacion}" class="btn btn-secondary">Regresar</a>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer th:replace="layout/plantilla :: footer"></footer>
+    </body>
+</html>

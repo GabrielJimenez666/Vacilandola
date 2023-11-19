@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
+
+<head th:replace="layout/plantilla :: head(${'Notificaciones'})">
+    <title>Notificaciones</title>
+    <meta charset="UTF-8" />
+</head>
+
+<body>
+    <header th:replace="layout/plantilla :: header"></header>
+    <br />
+    <div style="text-align: center;">
+        <a th:href="@{/regresar_menu}">Regresar</a>
+    </div>
+    <br />
+    <div th:if="${user.notificaciones == null or user.notificaciones.empty}">
+        <span>El usuario no tiene ningúna notificacion actualmente.</span>
+    </div>
+    <span>Hola</span>
+    <div th:if="${user.notificaciones != null and !user.notificaciones.empty}">
+        <table class='table table-striped text-center '>
+            <thead class='thead-dark'>
+                <tr>
+                    <th>Notificaciones</th>
+                    <th>Leido</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="notificacion : ${user.getNotificaciones}">
+                    <td th:text="${notificacion.getMensaje}"></td>
+                    <td>
+                        <a th:href="@{/eliminar_notificacion/{id}(id=${notificacion.getId})}" class="btn btn-success btn-sm">Marcar como leido</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <br />
+    <footer th:replace="layout/plantilla :: footer"></footer>
+</body>
+
+</html>

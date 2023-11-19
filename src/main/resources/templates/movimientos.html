@@ -1,0 +1,37 @@
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
+
+<head th:replace="layout/plantilla :: head(${'Movimientos'})">
+    <title>Movimientos</title>
+    <meta charset="UTF-8" />
+</head>
+
+<body>
+    <header th:replace="layout/plantilla :: header"></header>
+    <h2>Movimientos</h2>
+    <a th:href="@{/regresar_menu}">Regresar</a>
+    <br />
+    <br />
+
+    <div th:if="${user.getTransacciones != null and !user.getTransacciones.empty}">
+        <div th:each="transaccion : ${user.transacciones}">
+            <span th:text=" ${transaccion.getFecha} ">Mostrar
+                info de la transaccion</span>
+            <br />
+            <span th:text=" ${transaccion.getTipo} + '        Monto: ' + ${transaccion.getMonto} ">Mostrar
+                info de la transaccion2</span>
+            <br />
+            <br />
+        </div>
+    </div>
+    <br />
+    <a th:href="@{/descargar}" download="transacciones.csv">Descargar Transacciones</a>
+    <br />
+    <div th:if="${user.getTransacciones == null or user.getTransacciones.empty}">
+        <p>El usuario no tiene ningun movimiento actualmente</p>
+    </div>
+    <br />
+
+    <footer th:replace="layout/plantilla :: footer"></footer>
+</body>
+
+</html>

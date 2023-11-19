@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" 
+      xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>Listado Bolsillos</title>
+        <meta charset="UTF-8">
+    </head>
+    <body>
+        <section th:fragment="infoBolsillos" id="bolsillos">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-md-9 mx-auto">
+                        <div class='card'>
+                            <div class='card-header text-center'>
+                                <h4>[[#{bolsillos.titulo-lista}]]</h4>
+                            </div>
+                            <div class="card-body">
+                                <!-- Mensaje de alerta -->
+                                <div class="container">
+                                    <div class="row justify-content-center">
+                                        <div class="col-md-8">
+                                            <div th:if="${user.bolsillos == null or user.bolsillos.empty}" 
+                                                 class="alert alert-warning text-center py-2" role="alert">
+                                                <span class="fs-5">El usuario no tiene ningún bolsillo actualmente.</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--Tabla de bolsillos -->
+                                <table class='table table-striped text-center '>
+                                    <thead class='thead-dark'>
+                                        <tr>
+                                            <th>Nombre</th>
+                                            <th>Saldo</th>
+                                            <th></th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr th:each="bolsillo : ${user.bolsillos}">
+                                            <td>[[${bolsillo.getNombre}]]</td>
+                                            <td>[[${bolsillo.getSaldo}]]</td>
+                                            <td>
+                                                <a th:href="@{/vaciar_bolsillo/{id}(id=${bolsillo.getId})}" class="btn btn-success btn-sm">
+                                                    <i class="fas fa-angle-double-right"></i> [[#{accion.vaciar}]]
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a th:href="@{/eliminar_bolsillo/{id}(id=${bolsillo.getId})}" class="btn btn-danger btn-sm">
+                                                    <i class="fas fa-angle-double-right"></i> [[#{accion.eliminar}]]
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>                     
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </body>
+</html>

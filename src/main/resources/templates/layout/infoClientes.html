@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" 
+      xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>Info Clientes</title>
+        <meta charset="UTF-8">
+    </head>
+    <body>
+
+
+        <section th:fragment="infoClientes" id="clientes">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-md-9 mx-auto">
+                        <div class='card'>
+                            <div class='card-header text-center'>
+                                <h4>[[#{persona.titulo-lista}]]</h4>
+                            </div>
+                            <div class="card-body">
+                                <table class='table table-striped'>
+                                    <thead class='thead-dark'>
+                                        <tr>
+                                            <th th:text='#{persona.usuario}'>Usuario</th>
+                                            <th th:text='#{persona.contraseña}'>Contraseña</th>
+                                            <th th:text='#{persona.email}'>Email</th>
+                                            <th th:text='#{persona.fi}'>Fecha de Ingreso</th>
+                                            <th th:text='#{persona.saldo}'>Saldo</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>[[${user.getUsuario}]]</td>
+                                            <td>[[${user.getContrasena}]]</td>
+                                            <td>[[${user.getEmail}]]</td>
+                                            <td>[[${user.getFecha_ingreso}]]</td>
+                                            <td>[[${user.getSaldo}]]</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>                     
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </body>
+</html>

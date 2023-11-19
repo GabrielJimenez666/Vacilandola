@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml">
+    <head th:replace="layout/plantilla :: head(${'Inicio'})">
+        <title>Inicio</title>        
+    </head>
+    <body>
+        <header>
+            <section th:replace="layout/BarraCashflow :: barraCashflow"</section>
+        </header>
+        <h1>Bienvenido</h1>
+        <a th:href="@{/login}">Iniciar Sesion</a>
+        <br/>
+        <a th:href="@{/registro}">Crear cuenta</a>        
+        <br/>       
+        <footer th:replace="layout/plantilla :: footer"></footer>
+    </body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
+
+<head th:replace="layout/plantilla :: head(${'Simulacion'})">
+    <title>Simulacion</title>
+    <meta charset="UTF-8" />
+</head>
+
+<body>
+    <header th:replace="layout/plantilla :: header"></header>
+    <h2>Transferir dinero</h2>
+    <a th:href="@{/regresar_menu}">Regresar</a>
+    <br />
+    <div>
+
+        <form method="post" th:action="@{/transferencia}">
+            <div>
+                <label for="monto">Ingrese el monto de la transferencia:</label>
+                <br />
+                <input type="text" name="monto" required="required" />
+            </div>
+            <br />
+            <p>
+                Elija el método de pago:<br>
+                <label><input type="radio" name="metodo_pago" value=-1 required checked> Saldo
+                    principal</label><br>
+                <!-- Generar radios para cada bolsillo -->
+                <label th:each="bolsillo : ${user.getBolsillos}">
+                    <input type="radio" name="metodo_pago" th:value="${bolsillo.getId}"
+                        th:text="${bolsillo.getNombre} + ' (bolsillo)' " />
+                    <br />
+                </label><br>
+            </p>
+            <div>
+                <label for="id_usuario_destino">Ingrese el id del usuario al que le desea transferir:</label>
+                <br />
+                <input type="text" name="id_usuario_destino" required="required" />
+            </div>
+            <br />
+            <input type="submit" name="ejecutar" value="Transferir dinero" />
+        </form>
+        <p th:text="${advertencia4}"></p>
+
+    </div>
+    <footer th:replace="layout/plantilla :: footer"></footer>
+</body>
+
+</html>
