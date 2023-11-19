@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml">
+    <head th:replace="layout/plantilla :: head(${'Informacion personal'})">
+        <title>Informacion personal</title>
+        <meta charset="UTF-8"/>
+    </head>
+    <body>
+        <header th:replace="layout/plantilla :: header"></header>
+        <div>           
+            <a th:href="@{/regresar_ajustes}">Regresar</a>
+            <br/>
+            <h2>Tu informacion personal</h2>            
+            <span th:text="${user.getUsuario}"></span>
+            <br/>
+            <span>Dinos como quieres que te llamemos</span>
+            <br/>
+            <br/>
+            <span th:text="${user.getEmail}"></span>
+            <br/>
+            <span>Este es el correo que nos haz proporcionado</span>
+            <br/>
+            <br/>
+            <span th:text="${user.getFecha_ingreso}"></span>
+            <br/>
+            <span>Desde esta fecha haz estado con nosotros</span>
+            <br/>
+            <br/>
+        </div>
+        <footer th:replace="layout/plantilla :: footer"></footer>
+    </body>
+</html>

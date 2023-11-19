@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
+
+<head th:replace="layout/plantilla :: head(${'Simulacion Gasto'})">
+    <title>Simulacion Gasto</title>
+    <meta charset="UTF-8" />
+    <style>
+        .bolsillo-container {
+            display: none;
+        }
+
+        input[type="radio"][name="metodo_pago"][value="con_bolsillo"]:checked+.bolsillo-container {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <header th:replace="layout/plantilla :: header"></header>
+    <h2>Simulacion de gasto</h2>
+    <a th:href="@{/ir_simulacion}">Regresar</a>
+    <br />
+    <br />
+    <div>
+
+        <form method="post" th:action="@{/simulacion_gasto}">
+            <div>
+                <label for="monto">Ingrese el monto del gasto:</label>
+                <br />
+                <input type="text" name="monto" required="required" />
+            </div>
+            <br />
+            <p>
+                Elija el método de pago para el gasto:<br>
+                <label><input type="radio" name="metodo_pago" value=-1 required checked> Saldo
+                    principal</label><br>
+                <!-- Generar radios para cada bolsillo -->
+                <label th:each="bolsillo : ${user.getBolsillos}">
+                    <input type="radio" name="metodo_pago" th:value="${bolsillo.getId}"
+                        th:text="${bolsillo.getNombre} + ' (bolsillo)' " />
+                    <br />
+                </label><br>
+            </p>
+            <input type="submit" name="ejecutar" value="Generar gasto manual" />
+        </form>
+        <p th:text="${advertencia2}"></p>
+
+    </div>
+    <footer th:replace="layout/plantilla :: footer"></footer>
+</body>
+
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml">
+    <head th:replace="layout/plantilla :: head(${'Bolsillos 2'})">
+        <title>Bolsillos 2</title>
+        <meta charset="UTF-8"/>
+    </head>
+    <body>
+        <header th:replace="layout/plantilla :: header"></header>
+        <a th:href="@{/regresar_bolsillos}">Regresar</a>
+        <br/>
+        <br/>
+        <form method="post" th:action="@{/mover_dinero_bolsillos}">
+            <div class="form-group">
+                <label for="seleccionDeBolsillo">Selecciona el bolsillo donde deseas mover dinero:</label>
+                <select class="form-control" id="seleccionDeBolsillo" name="seleccionDeBolsillo">
+                    <option th:each="bolsillo : ${user.getBolsillos}" th:value="${bolsillo.getId}" th:text="${bolsillo.getNombre} + ', ' + ${bolsillo.getSaldo}"></option>
+                </select>
+            </div>
+            <br/>
+            <div>
+                <label for="monto">Ingrese el monto que se va a mover:</label>
+                <input type="text" name="monto" required="required"/>
+            </div>
+            <br/>
+            <div class="form-group">
+                <label for="seleccionDeBolsillo">Selecciona el bolsillo donde deseas recibir el dinero:</label>
+                <select class="form-control" id="seleccionDeBolsillo2" name="seleccionDeBolsillo2">
+                    <option th:each="bolsillo : ${user.getBolsillos}" th:value="${bolsillo.getId}" th:text="${bolsillo.getNombre} + ', ' + ${bolsillo.getSaldo}"></option>
+                </select>
+            </div>
+            <br/>
+            <input type="submit" name="ejecutar" value="Mover dinero entre bolsillos"/>
+        </form>
+
+        <p th:text="${advertencia}"></p>
+        <br/>
+        <footer th:replace="layout/plantilla :: footer"></footer>
+    </body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
+
+    <head th:replace="layout/plantilla :: head(${'Inicio'})">
+        <title>Inicio</title>
+    </head>
+
+    <body>
+        <header th:replace="layout/plantilla :: header"></header>
+        <h2>Bienvenido usuario</h2>
+        <p th:text=" 'Hola, ' + ${user.getUsuario}">Fecha actual</p>
+        <p th:text=" 'Fecha actual: ' + ${fecha_actual}">Fecha actual</p>
+        <p th:text=" 'Saldo disponible en la cuenta: ' + ${user.getSaldo}"></p>
+        <div>
+            <table border="1">
+                <tr>
+                    <th>Usuario</th>
+                    <th>Contrasena</th>
+                    <th>Email</th>
+                    <th>Fecha de ingreso</th>
+                    <th>Saldo</th>
+                </tr>
+                <tr>
+                    <td th:text="${user.getUsuario}">Mostrar Usuario</td>
+                    <td th:text="${user.getContrasena}">Mostrar Contrasena</td>
+                    <td th:text="${user.getEmail}">Mostrar Email</td>
+                    <td th:text="${user.getFecha_ingreso}">Mostrar Fecha ingreso</td>
+                    <td th:text="${user.getSaldo}">Mostrar Saldo</td>
+                </tr>
+            </table>
+        </div>
+        <br />
+        <a th:href="@{/ir_cuenta}">Perfil</a>
+        <br />
+        <a th:href="@{/bolsillos}">Visualizar Bolsillos</a>
+        <br />
+        <a th:href="@{/ir_simulacion}">Simular transaccion</a>
+        <br />
+        <a th:href="@{/ir_transferencia}">Transferir dinero</a>
+        <br />
+        <a th:href="@{/ir_movimientos}">Visualizar movimientos</a>
+        <br />
+        <footer th:replace="layout/plantilla :: footer"></footer>
+    </body>
+
+</html>

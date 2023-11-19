@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml">
+    <head th:replace="layout/plantilla :: head(${'Bolsillos 1'})">
+        <title>Bolsillos 1</title>
+        <meta charset="UTF-8"/>
+    </head>
+    <body>
+        <header th:replace="layout/plantilla :: header"></header>
+        <h2>Creacion de un bolsillo</h2>
+        <a th:href="@{/regresar_bolsillos}">Regresar</a>
+        <br/>
+        <br/>
+        <form th:action="@{/guardar_bolsillo}" method="post">
+            <label for="nombre">Nombre:</label>
+            <input type="text" name="nombre_bolsillo" required="required"/>
+            <br/>
+            <br/>
+            <input type="submit" name="guardar" value="Crear bolsillo"/>
+        </form>
+        <footer th:replace="layout/plantilla :: footer"></footer>
+    </body>
+</html>

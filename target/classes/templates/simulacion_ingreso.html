@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
+
+<head th:replace="layout/plantilla :: head(${'Simulacion Ingreso'})">
+    <title>Simulacion Ingreso</title>
+</head>
+
+<body>
+    <header th:replace="layout/plantilla :: header"></header>
+    <h2>Simulacion de ingreso</h2>
+    <a th:href="@{/ir_simulacion}">Regresar</a>
+    <br />
+    <div>
+
+        <form method="post" th:action="@{/simulacion_ingreso}">
+            <div>
+                <label for="monto">Ingrese el monto del ingreso:</label>
+                <br />
+                <input type="text" name="monto" required="required" />
+            </div>
+            <br />
+            <input type="submit" name="ejecutar" value="Generar ingreso manual" />
+        </form>
+        <p th:text="${advertencia3}"></p>
+
+    </div>
+    <footer th:replace="layout/plantilla :: footer"></footer>
+</body>
+
+</html>

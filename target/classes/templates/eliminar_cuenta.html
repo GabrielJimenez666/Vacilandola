@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml">
+    <head th:replace="layout/plantilla :: head(${'Eliminar cuenta'})">
+        <title>Eliminar cuenta</title>
+        <meta charset="UTF-8"/>
+    </head>
+    <body>
+        <header th:replace="layout/plantilla :: header"></header>
+        <div>           
+            <a th:href="@{/regresar_ajustes}">Regresar</a>
+            <br/>
+            <br/>
+            <h2>Estas apunto de borrar tu cuenta, ¿estas seguro?</h2>
+            <form th:action="@{/borrar_cuenta}" method="post">
+                <label for="contraseña">Ingrese contrasena:</label>
+                <input type="password" name="input_contrasena" required="required"/>
+                <br/>
+                <label for="contraseña2">Ingrese nuevamente la contraseña:</label>
+                <input type="password" name="input_contrasena2" required="required"/>
+                <br/>
+                <br/>
+                <input type="submit" name="ingresar" value="Borrar cuenta"/>
+            </form>
+            <br/>
+            <p th:text="${errado}"></p>
+        </div>
+        <footer th:replace="layout/plantilla :: footer"></footer>
+    </body>
+</html>

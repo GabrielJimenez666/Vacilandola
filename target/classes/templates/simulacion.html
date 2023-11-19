@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
+
+    <head th:replace="layout/plantilla :: head(${'Simulacion'})">
+        <title>Simulacion</title>        
+    </head>
+
+    <body>
+        <header th:replace="layout/plantilla :: header"></header>
+        <h2>Simulacion de transaccion</h2>
+        <a th:href="@{/regresar_menu}">Regresar</a>
+        <br />
+        <div>
+            <a th:href="@{/ir_simulacion_gasto}">Simular gasto</a>
+            <br />
+            <a th:href="@{/ir_simulacion_ingreso}">Simular ingreso</a>
+        </div>
+        <footer th:replace="layout/plantilla :: footer"></footer>
+    </body>
+
+</html>

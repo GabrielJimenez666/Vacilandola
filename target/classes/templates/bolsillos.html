@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml">
+    <head th:replace="layout/plantilla :: head(${'bolsillos'})">
+        <title>bolsillos</title>        
+    </head>
+    <body>
+        <header th:replace="layout/plantilla :: header"></header>       
+        <h2>Bolsillos del usuario</h2>
+        <a th:href="@{/regresar_menu}">Regresar</a>
+        <br/>
+        <a th:href="@{/agregar_bolsillo}">Crear bolsillo</a>
+        <br/>        
+        <div th:if="${user.bolsillos != null and !user.bolsillos.empty}">
+            <a th:href="@{/mover_dinero}">Mover dinero entre los bolsillos</a>
+            <br/>
+            <a th:href="@{/agregar_dinero_bol}">Agregar dinero del saldo principal a un bolsillo</a>
+            <br/>
+            <br/>
+            <table border="2">
+                <tr>
+                    <th>Usuario_id</th>
+                    <th>Nombre</th>
+                    <th>Saldo</th>
+                    <th>Eliminar</th>
+                    <th>Vaciar</th>
+                </tr>
+                <tr th:each="bolsillo : ${user.bolsillos}">
+                    <td th:text="${bolsillo.getUsuario_id}">Mostrar Usuario_id</td> 
+                    <td th:text="${bolsillo.getNombre}">Mostrar Nombre</td>
+                    <td th:text="${bolsillo.getSaldo}">Mostrar Saldo</td>
+                    <td><a th:href="@{/eliminar_bolsillo/} + ${bolsillo.getId}" th:text="Eliminar"/></td>
+                    <td><a th:href="@{/vaciar_bolsillo/} + ${bolsillo.getId}" th:text="Vaciar"/></td>
+                </tr>
+            </table>
+        </div>        
+        <div th:if="${user.bolsillos == null or user.bolsillos.empty}">
+            <p>El usuario no tiene ningun bolsillo actualmente</p>
+        </div>
+        <br/>
+        <footer th:replace="layout/plantilla :: footer"></footer>
+    </body>
+</html>
